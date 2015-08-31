@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: Kit Sunde
+  description: Installs watchman.
+  company: Media Pop
+  license: MIT
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+    - system
+dependencies:
+  - role: Celc.unarchive
