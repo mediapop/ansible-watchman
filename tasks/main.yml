@@ -10,7 +10,7 @@
 
 - name: Unzip watchman
   unarchive:
-    src=/tmp/watchman-{{watchman_version}}
+    src=/tmp/watchman-{{watchman_version}}.zip
     dest=/tmp
     creates=/tmp/watchman-{{watchman_version}}
     copy=no
