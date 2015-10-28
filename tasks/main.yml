@@ -4,36 +4,36 @@
 
 # In 2.0 we can unzip from url
 - name: Download watchman
-  get_url: url=https://github.com/facebook/watchman/archive/master.zip
-    dest=/tmp/master.zip
+  get_url: url=https://github.com/facebook/watchman/archive/v{{watchman_version}}.zip
+    dest=/tmp/watchman-{{watchman_version}}.zip
   when: not watchman.stat.exists
 
 - name: Unzip watchman
   unarchive:
-    src=/tmp/master.zip
+    src=/tmp/watchman-{{watchman_version}}
     dest=/tmp
-    creates=/tmp/watchman-master
+    creates=/tmp/watchman-{{watchman_version}}
     copy=no
   when: not watchman.stat.exists
 
 - name: Autogen
   shell: ./autogen.sh
-    chdir=/tmp/watchman-master
+    chdir=/tmp/watchman-{{watchman_version}}
   when: not watchman.stat.exists
 
 - name: Configure
   shell: ./configure
-    chdir=/tmp/watchman-master
+    chdir=/tmp/watchman-{{watchman_version}}
   when: not watchman.stat.exists
 
 - name: Make
   shell: make
-    chdir=/tmp/watchman-master
+    chdir=/tmp/watchman-{{watchman_version}}
   when: not watchman.stat.exists
 
 - name: Make Install
   shell: make install
-    chdir=/tmp/watchman-master
+    chdir=/tmp/watchman-{{watchman_version}}
   when: not watchman.stat.exists
 
 - name: Cleanup watchman
@@ -41,5 +41,5 @@
     path={{item}}
     state=absent
   with_items:
-    - /tmp/master.zip
-    - /tmp/watchman
+    - /tmp/watchman-{{watchman_version}}.zip
+    - /tmp/watchman-{{watchman_version}}
