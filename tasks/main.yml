@@ -2,6 +2,9 @@
   stat: path=/usr/local/bin/watchman
   register: watchman
 
+- name: Install autoconf if it's missing
+  apt: name=autoconf
+
 # In 2.0 we can unzip from url
 - name: Download watchman
   get_url: url=https://github.com/facebook/watchman/archive/master.zip
