@@ -1,7 +1,14 @@
-# README.md
-# Ansible Role: Watchman
+# Ansible Watchman
 
-Make sure [watchman](https://facebook.github.io/watchman/) is available.
+[![Travis](https://travis-ci.org/mediapop/ansible-watchman.svg?branch=master)](https://travis-ci.org/mediapop/ansible-watchman)
+
+Installs [watchman](https://facebook.github.io/watchman/).
+
+## Role Variables
+
+```yml
+watchman_version: "4.7.0"
+```
 
 ## Example Playbook
 
@@ -11,15 +18,10 @@ Make sure [watchman](https://facebook.github.io/watchman/) is available.
     - role: mediapop.watchman
 ```
         
-## Example as a dependency in your meta
-
-
-```yml
----
-dependencies:
-- role: mediapop.watchman
-```
-
 ## License
 
 MIT
+
+## Author
+
+[Media Pop](http://www.mediapop.co)
