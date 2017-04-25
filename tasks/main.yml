@@ -3,9 +3,13 @@
     path: "/usr/local/bin/watchman"
   register: watchman
 
-- name: "Install autoconf if it's missing"
+- name: "Install dependencies"
   apt:
     name: "autoconf"
+  with_items:
+    - "autoconf"
+    - "libtool"
+    - "pkg-config"
 
 - name: "Unzip watchman"
   unarchive:
