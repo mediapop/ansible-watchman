@@ -17,7 +17,6 @@
     remote_src: yes
     dest: "/tmp"
     creates: "/tmp/watchman-{{watchman_version}}"
-    copy: no
   when: not watchman.stat.exists
 
 - name: "Autogen"
