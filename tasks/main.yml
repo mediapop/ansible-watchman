@@ -48,5 +48,4 @@
     path: "{{item}}"
     state: "absent"
   with_items:
-    - "/tmp/master-{{watchman_version}}.zip"
     - "/tmp/watchman-{{watchman_version}}"
