@@ -1,48 +1,55 @@
-- name: Get watchman stat
-  stat: path=/usr/local/bin/watchman
+- name: "Get watchman stat"
+  stat:
+    path: "/usr/local/bin/watchman"
   register: watchman
 
-- name: Install autoconf if it's missing
-  apt: name=autoconf
+- name: "Install autoconf if it's missing"
+  apt:
+    name: "autoconf"
 
 # In 2.0 we can unzip from url
-- name: Download watchman
-  get_url: url=https://github.com/facebook/watchman/archive/master.zip
-    dest=/tmp/master.zip
+- name: "Download watchman"
+  get_url:
+    url: "https://github.com/facebook/watchman/archive/master.zip"
+    dest: "/tmp/master.zip"
   when: not watchman.stat.exists
 
-- name: Unzip watchman
+- name: "Unzip watchman"
   unarchive:
-    src=/tmp/master.zip
-    dest=/tmp
-    creates=/tmp/watchman-master
-    copy=no
+    src: "/tmp/master.zip"
+    dest: "/tmp"
+    creates: "/tmp/watchman-master"
+    copy: no
   when: not watchman.stat.exists
 
-- name: Autogen
-  shell: ./autogen.sh
-    chdir=/tmp/watchman-master
+- name: "Autogen"
+  shell: "./autogen.sh"
+  args:
+    chdir: "/tmp/watchman-master"
   when: not watchman.stat.exists
 
-- name: Configure
-  shell: ./configure
-    chdir=/tmp/watchman-master
+- name: "Configure"
+  shell: "./configure"
+  args:
+    chdir: "/tmp/watchman-master"
   when: not watchman.stat.exists
 
-- name: Make
-  shell: make
-    chdir=/tmp/watchman-master
+- name: "Make"
+  shell: "make"
+  args:
+    chdir: "/tmp/watchman-master"
   when: not watchman.stat.exists
 
-- name: Make Install
-  shell: make install
-    chdir=/tmp/watchman-master
+- name: "Make Install"
+  shell: "make install"
+  args:
+    chdir: "/tmp/watchman-master"
   when: not watchman.stat.exists
 
-- name: Cleanup watchman
+- name: "Cleanup watchman"
   file:
-    path={{item}}
-    state=absent
+    path: "{{item}}"
+    state: "absent"
   with_items:
-    - /tmp/master.zip
-    - /tmp/watchman
+    - "/tmp/master.zip"
+    - "/tmp/watchman"
