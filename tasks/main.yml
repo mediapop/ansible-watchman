@@ -7,16 +7,10 @@
   apt:
     name: "autoconf"
 
-# In 2.0 we can unzip from url
-- name: "Download watchman"
-  get_url:
-    url: "https://github.com/facebook/watchman/archive/master.zip"
-    dest: "/tmp/master.zip"
-  when: not watchman.stat.exists
-
 - name: "Unzip watchman"
   unarchive:
-    src: "/tmp/master.zip"
+    src: "https://github.com/facebook/watchman/archive/master.zip"
+    remote_src: yes
     dest: "/tmp"
     creates: "/tmp/watchman-master"
     copy: no
