@@ -8,7 +8,7 @@ Make sure [watchman](https://facebook.github.io/watchman/) is available.
 ```yml
 - hosts: webservers
   roles:
-    - role: Celc.watchman
+    - role: mediapop.watchman
 ```
         
 ## Example as a dependency in your meta
@@ -17,7 +17,7 @@ Make sure [watchman](https://facebook.github.io/watchman/) is available.
 ```yml
 ---
 dependencies:
-- role: Celc.watchman
+- role: mediapop.watchman
 ```
 
 ## License
