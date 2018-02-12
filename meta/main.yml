@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-  author: Kit Sunde
+  author: Media Pop
   description: Installs watchman.
   company: Media Pop
   license: MIT
-  min_ansible_version: 2.2
+  min_ansible_version: 2.3
   platforms:
   - name: Ubuntu
     versions:
