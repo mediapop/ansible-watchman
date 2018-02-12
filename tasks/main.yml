@@ -11,36 +11,35 @@
     - "libtool"
     - "pkg-config"
 
-- name: "Unzip watchman"
-  unarchive:
-    src: "https://github.com/facebook/watchman/archive/v{{watchman_version}}.zip"
-    remote_src: yes
-    dest: "/tmp"
-    creates: "/tmp/watchman-{{watchman_version}}"
-  when: not watchman.stat.exists
+- name: "Install watchman"
+  block:
+  - name: "Unzip watchman"
+    unarchive:
+      src: "https://github.com/facebook/watchman/archive/v{{watchman_version}}.zip"
+      remote_src: yes
+      dest: "/tmp"
+      creates: "/tmp/watchman-{{watchman_version}}"
 
-- name: "Autogen"
-  shell: "./autogen.sh"
-  args:
-    chdir: "/tmp/watchman-{{watchman_version}}"
-  when: not watchman.stat.exists
+  - name: "Autogen"
+    shell: "./autogen.sh"
+    args:
+      chdir: "/tmp/watchman-{{watchman_version}}"
 
-- name: "Configure"
-  shell: "./configure"
-  args:
-    chdir: "/tmp/watchman-{{watchman_version}}"
-  when: not watchman.stat.exists
+  - name: "Configure"
+    shell: "./configure"
+    args:
+      chdir: "/tmp/watchman-{{watchman_version}}"
 
-- name: "Make"
-  shell: "make"
-  args:
-    chdir: "/tmp/watchman-{{watchman_version}}"
-  when: not watchman.stat.exists
+  - name: "Make"
+    shell: "make"
+    args:
+      chdir: "/tmp/watchman-{{watchman_version}}"
 
-- name: "Make Install"
-  shell: "make install"
-  args:
-    chdir: "/tmp/watchman-{{watchman_version}}"
+  - name: "Make Install"
+    shell: "make install"
+    args:
+      chdir: "/tmp/watchman-{{watchman_version}}"
+      
   when: not watchman.stat.exists
 
 - name: "Cleanup watchman"
