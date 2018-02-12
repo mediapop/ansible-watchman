@@ -9,7 +9,7 @@ Installs [watchman](https://facebook.github.io/watchman/).
 ## Role Variables
 
 ```yml
-watchman_version: "4.7.0"
+watchman_version: "4.9.0"
 ```
 
 ## Example Playbook
