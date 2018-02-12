@@ -5,7 +5,7 @@
 
 - name: "Install dependencies"
   apt:
-    name: "autoconf"
+    name: "{{item}}"
   with_items:
     - "autoconf"
     - "libtool"
