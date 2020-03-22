@@ -5,7 +5,11 @@
 
 - name: "Install dependencies"
   apt:
-    name: "[autoconf, libtool, pkg-config, libssl-dev]"
+    name:
+      - autoconf
+      - libtool
+      - pkg-config
+      - libssl-dev
 
 - name: "Install watchman"
   block:
