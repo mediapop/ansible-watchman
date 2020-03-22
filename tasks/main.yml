@@ -5,11 +5,11 @@
 
 - name: "Install dependencies"
   apt:
-    name: "{{item}}"
-  with_items:
-    - "autoconf"
-    - "libtool"
-    - "pkg-config"
+    name:
+      - autoconf
+      - libtool
+      - pkg-config
+      - libssl-dev
 
 - name: "Install watchman"
   block:
@@ -26,7 +26,7 @@
       chdir: "/tmp/watchman-{{watchman_version}}"
 
   - name: "Configure"
-    shell: "./configure {{'--with-python=%s' % ansible_python_interpreter if ansible_python_interpreter is defined}}"
+    shell: "./configure --without-python --without-pcre --enable-lenient"
     args:
       chdir: "/tmp/watchman-{{watchman_version}}"
 
@@ -34,6 +34,7 @@
     shell: "make"
     args:
       chdir: "/tmp/watchman-{{watchman_version}}"
+    ignore_errors: yes
 
   - name: "Make Install"
     shell: "make install"
