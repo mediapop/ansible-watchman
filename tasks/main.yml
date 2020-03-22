@@ -5,11 +5,7 @@
 
 - name: "Install dependencies"
   apt:
-    name: "{{item}}"
-  with_items:
-    - "autoconf"
-    - "libtool"
-    - "pkg-config"
+    name: "[autoconf, libtool, pkg-config, libssl-dev]"
 
 - name: "Install watchman"
   block:
