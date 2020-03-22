@@ -26,7 +26,7 @@
       chdir: "/tmp/watchman-{{watchman_version}}"
 
   - name: "Configure"
-    shell: "./configure {{'--with-python=%s' % ansible_python_interpreter if ansible_python_interpreter is defined}}"
+    shell: "./configure --without-python --without-pcre --enable-lenient"
     args:
       chdir: "/tmp/watchman-{{watchman_version}}"
 
