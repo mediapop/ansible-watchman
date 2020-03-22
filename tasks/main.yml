@@ -34,6 +34,7 @@
     shell: "make"
     args:
       chdir: "/tmp/watchman-{{watchman_version}}"
+    ignore_errors: yes
 
   - name: "Make Install"
     shell: "make install"
